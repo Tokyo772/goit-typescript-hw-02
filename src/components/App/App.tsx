@@ -7,16 +7,17 @@ import Loader from "../Loader/Loader";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
+import { Article } from "./types";
 
 function App() {
-  const [article, setArticle] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [page, setPage] = useState(1);
-  const [query, setQuery] = useState("");
-  const [showBtn, setShowBtn] = useState(false);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [article, setArticle] = useState<Article[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);
+  const [query, setQuery] = useState<string>("");
+  const [showBtn, setShowBtn] = useState<boolean>(false);
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [selectedImage, setSelectedImage] = useState<Article | null>(null);
 
   useEffect(() => {
     async function getArticle() {
@@ -39,7 +40,7 @@ function App() {
     getArticle();
   }, [query, page]);
 
-  const handleSearch = (newQuery) => {
+  const handleSearch = (newQuery: string) => {
     setQuery(newQuery);
     setPage(1);
     setShowBtn(false);
@@ -50,9 +51,10 @@ function App() {
     setPage(page + 1);
   };
 
-  const openModal = (imageId) => {
+  const openModal = (imageId: string) => {
     const image = article.find((img) => img.id === imageId);
-    setSelectedImage(image);
+
+    setSelectedImage(image || null);
     setModalIsOpen(true);
   };
 

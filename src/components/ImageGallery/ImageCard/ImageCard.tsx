@@ -1,5 +1,9 @@
 import styles from "./ImageCard.module.css";
-const ImageCard = ({ small, desc }) => {
+interface ImageCardProps {
+  small: string;
+  desc: string;
+}
+const ImageCard: React.FC<ImageCardProps> = ({ small, desc }) => {
   return (
     <div className={styles.container}>
       <img className={styles.img} src={small} alt={desc} />
