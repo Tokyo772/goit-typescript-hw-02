@@ -6,7 +6,7 @@ Modal.setAppElement("#root");
 interface ImageModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
-  selectedImage: Article;
+  selectedImage: Article | null;
 }
 const ImageModal: React.FC<ImageModalProps> = ({
   isOpen,
